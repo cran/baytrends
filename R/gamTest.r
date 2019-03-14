@@ -46,6 +46,8 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
                    , salinity.detrended=NA) {
 
 # ----- Change history -------------------------------------------- ####
+# 28Dec2018: JBH: set up doy (q2.doy) for computing seasonal mean  
+# 18Jul2018: JBH: added na.rm=TRUE to min/max functions  
 # 01May2018: JBH: changed .impute to impute; 
 #                 added to stat.gam.result & chng.gam.result: 
 #                     + usgs gage id, usgs gage name 
@@ -85,6 +87,7 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
 # 18May2016: JBH: Added iSpec and data in list that is returned.
 # 27Apr2016: JBH: Explicit use of "::" for non-base functions added.
 
+#  gamTable=TRUE; gamPlot=10; gamDiffModel=NA; flow.detrended=NA; salinity.detrended=NA
 # Initialization #####
   {
     # dont use scientific notation in figures
@@ -137,6 +140,16 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     yearBegin <- iSpec$yearBegin
     yearEnd   <- iSpec$yearEnd
 
+    # create doy for computing seasonal mean  #28Dec2018
+    seasMean <- unlist(strsplit(analySpec$gamLegend[analySpec$gamLegend$descrip=="seasMean", "legend"], "-"))
+    seasMean.myStep   <- 7
+    q2.doy    <- as.numeric(baytrends::baseDay(lubridate::mdy (paste0(seasMean ,"/2000"))))
+    q2.doy.a1 <- seq(q2.doy[1],q2.doy[2], seasMean.myStep)
+    q2.doy.a2 <- seq(q2.doy[2],q2.doy[1],-seasMean.myStep)
+    q2.doy    <- c(q2.doy.a1[1:sum(q2.doy.a1<q2.doy.a2)], rev(q2.doy.a2[1:sum(q2.doy.a1>q2.doy.a2)]))
+    iSpec$seasMean <- analySpec$seasMean <- seasMean
+    iSpec$q2.doy   <- analySpec$q2.doy   <- q2.doy    
+
     # error trap for minimum observations
     if ( !(dep %in% names(ct1)) )  {
       warning(paste0("Minimum obs. req. not met: ",dep, ", Station: ", stat, ", Layer: ", layer, " not evaluated."))
@@ -171,7 +184,8 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     statLists <- .initializeResults()
     stat.gam.result <- statLists[["stat.gam.result"]]
     chng.gam.result <- chng.gam.resultNA <- statLists[["chng.gam.result"]]
-    
+
+    iRow <- 1 # does 1st model    
   }
 
 # GAM loop: BEGIN #####
@@ -286,11 +300,13 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
     # create gam formula
     gamForm  <- as.formula(paste(iSpec$dep, gamModel.model))
     iSpec$gamForm <- paste(iSpec$dep, gamModel.model)
-    .H4(paste(depVarList[depVarList$depsGAM==dep, "parmName"], "-", gamModel.name))
+    if(gamTable | !gamPlot==FALSE) {  # only show header if tables or figures are outputted
+      .H4(paste(depVarList[depVarList$depsGAM==dep, "parmName"], "-", gamModel.name))
+    }
 
     # impute plausible first guess. (impute in normal space, then convert)
     ct2 <- ct1
-    ct2[,iSpec$depOrig] <- impute(ct1[,iSpec$depOrig] )
+    ct2[,iSpec$depOrig] <- baytrends::impute(ct1[,iSpec$depOrig] )
     if(transform) ct2[,iSpec$dep] <- suppressWarnings(log(ct2[,iSpec$depOrig]))
 
     # run GAM on impute plausible first guess.  #01May2018 added try error trap
@@ -457,20 +473,27 @@ gamTest <-function(df, dep, stat, layer=NA, analySpec, gamTable=TRUE, gamPlot=10
       # evaluate F-stat in ANOVA table     #04Feb2017
       FstatFlag <- ""
       if(selectSetting==FALSE &&
-         (min(gamANOVAtbl$df) < gamPenaltyCrit[1] ||
-          max(gamANOVAtbl$F) > gamPenaltyCrit[2])) {
+         (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+          max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
         gamANOVAtbl$Note <- '-'
-        gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] ||
-                      gamANOVAtbl$F > gamPenaltyCrit[2],"Note"] <- "F-stat maybe unreliable"
-        FstatFlag <- "***"
+        if (length(gamANOVAtbl$df < gamPenaltyCrit[1] ||      #18Jul2018
+                   gamANOVAtbl$F > gamPenaltyCrit[2]) == 1 &  #18Jul2018
+            is.na(gamANOVAtbl$df < gamPenaltyCrit[1] ||       #18Jul2018
+                  gamANOVAtbl$F > gamPenaltyCrit[2])[1]) {    #18Jul2018
+          FstatFlag <- ""                                     #18Jul2018
+        } else {
+          gamANOVAtbl[gamANOVAtbl$df < gamPenaltyCrit[1] ||
+                        gamANOVAtbl$F > gamPenaltyCrit[2],"Note"] <- "F-stat maybe unreliable"
+          FstatFlag <- "***"
+        }
       }
       
       # Output GAM ANOVA table          #04Feb2017
       if(gamTable) {
         
         if(selectSetting==FALSE &&
-           (min(gamANOVAtbl$df) < gamPenaltyCrit[1] ||
-            max(gamANOVAtbl$F) > gamPenaltyCrit[2])) {
+           (min(gamANOVAtbl$df, na.rm=TRUE) < gamPenaltyCrit[1] ||  #18Jul2018
+            max(gamANOVAtbl$F, na.rm=TRUE) > gamPenaltyCrit[2])) {  #18Jul2018
           .T("GAM Analysis of Variance.")
           print(knitr::kable(gamANOVAtbl[,],
                              col.names = c("Type","Source","edf","F-stat","p-value","Note"),

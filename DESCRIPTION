@@ -12,15 +12,16 @@ Description: Enable users to evaluate long-term trends using a Generalized
     States to provide insights to a range of management- and research-focused 
     questions.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 1.0.7
-Date: 2018-07-12
+Version: 1.1.0
+Date: 2019-03-14
 Maintainer: Erik Leppo <Erik.Leppo@tetratech.com>
 Depends: R (>= 3.2.0), lubridate, mgcv
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8
 Suggests: devtools, fitdistrplus, imputeTS, knitr, nlme, pander,
-        readxl, rmarkdown, testthat
+        readxl, rmarkdown, sessioninfo, testthat
 Imports: XML, dataRetrieval, digest, gdata, memoise, methods, plyr,
         survival, zCompositions
 URL: https://github.com/tetratech/baytrends
@@ -29,12 +30,13 @@ Collate: 'a1_smwrQW_qw-class.R' 'a2_smwrQW_lcens-class.R'
         'a3_smwrQW_mcens-class.R' 'analysisOrganizeData.R'
         'appendDateFeatures.R' 'as.lcens.R' 'as.mcens.R' 'as.qw.R'
         'baytrends.R' 'checkRange.R' 'chkParameter.R' 'closeOut.R'
-        'data.R' 'detrended.flow.R' 'detrended.salinity.R'
-        'expectMaxFunctions.r' 'findFile.R' 'flwAveragePred.R'
-        'fmtPval.R' 'gamDiff.R' 'gamPlotCalc.r' 'gamPlotDisp.R'
-        'gamTables.R' 'gamTest.r' 'getUSGSflow.R' 'headers2.R'
-        'imputeCensored.R' 'initializeResults.r' 'layerAggregation.R'
-        'loadData.R' 'loadExcel.R' 'mergeFlow.R' 'mergeSalinity.R'
+        'createResiduals.R' 'data.R' 'detrended.flow.R'
+        'detrended.salinity.R' 'expectMaxFunctions.r' 'findFile.R'
+        'flwAveragePred.R' 'fmtPval.R' 'gamDiff.R' 'gamPlotCalc.r'
+        'gamPlotDisp.R' 'gamTables.R' 'gamTest.r' 'getUSGSflow.R'
+        'headers2.R' 'imputeCensored.R' 'initializeResults.r'
+        'layerAggregation.R' 'loadData.R' 'loadExcel.R' 'loadModels.R'
+        'loadModelsResid.R' 'mergeFlow.R' 'mergeSalinity.R'
         'qw.export.R' 'qw.import.R' 'reAttDF.R' 'saveDF.R'
         'seasAdjflow2.R' 'selectData.R' 'smwrBase_baseDay.R'
         'smwrBase_baseDay2decimal.R' 'smwrBase_dectime.R'
@@ -79,6 +81,6 @@ Collate: 'a1_smwrQW_qw-class.R' 'a2_smwrQW_lcens-class.R'
         'smwrQW_x_z%eq%.R' 'smwrStats_rmse.R' 'smwrStats_vif.R'
         'supportFunctions.R' 'zzz.R'
 NeedsCompilation: no
-Packaged: 2018-07-12 16:08:08 UTC; Erik.Leppo
+Packaged: 2019-03-14 17:50:56 UTC; Erik.Leppo
 Repository: CRAN
-Date/Publication: 2018-07-19 10:20:13 UTC
+Date/Publication: 2019-03-14 18:23:27 UTC

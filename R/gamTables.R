@@ -1,15 +1,23 @@
 #' Prepare ANOVA table for GAM analysis
 #'
 #' @param gamo output from gam model
+#' @keywords internal
 #' @export
 #'
 .gamANOVA <- function(gamo) {
 # -----< Change history >--------------------------------------------
+# 11Jul2018: JBH: updated to allow for situations where gam formula
+#                 does not have a parametric term
 # 16Jun2016: JBH: added some notes to code
 
   # gamo <- gamRslt
   anov.gamo     <- anova(gamo)
-  agamp         <- data.frame(anov.gamo$pTerms.table)
+  if (length(anov.gamo$pTerms.table)>0) {
+    agamp <- data.frame(anov.gamo$pTerms.table)
+  } else {
+    agamp <- data.frame(df=NA_real_,F=NA_real_,p.value=NA_real_)
+    rownames(agamp) <- "NA"
+  }
   agamp$type    <- '   "      " '
   agamp$type[1] <- 'parametric terms'
   agams         <- data.frame(anov.gamo$s.table)
@@ -32,6 +40,8 @@
 #' Prepare table of coefficients for GAM analysis
 #'
 #' @param lmo output from gam model
+#' @param iSpec data frame with intervenList
+#' @keywords internal
 #' @export
 #'
 .gamCoeff <- function(lmo, iSpec) { 
@@ -42,6 +52,7 @@
 # 19Jul2017: JBH: Expanded table to include comparison of interventions
 #                 on an "A->B", "B->C", ... basis; changed lm.coeff
 #                 to not use factors
+# 12Mar2019: EWL: Document undocumented parameter
 
   lm.sum <- summary(lmo)
   p.se <- lm.sum$se[1:length(lm.sum$p.coeff)]
@@ -122,6 +133,7 @@
 #'
 #' @param por.diff Output from gam.por.diff
 #' @param iSpec data set specifications
+#' @keywords internal
 #' @export
 #'
 .gamDiffPORtbl <- function(por.diff, iSpec) {
