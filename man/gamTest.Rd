@@ -4,9 +4,18 @@
 \alias{gamTest}
 \title{Perform GAM analysis}
 \usage{
-gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
-  gamPlot = 10, gamDiffModel = NA, flow.detrended = NA,
-  salinity.detrended = NA)
+gamTest(
+  df,
+  dep,
+  stat,
+  layer = NA,
+  analySpec,
+  gamTable = TRUE,
+  gamPlot = 10,
+  gamDiffModel = NA,
+  flow.detrended = NA,
+  salinity.detrended = NA
+)
 }
 \arguments{
 \item{df}{data frame}
@@ -15,7 +24,7 @@ gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
 
 \item{stat}{station}
 
-\item{layer}{layer (optional)}
+\item{layer}{layer}
 
 \item{analySpec}{analytical specifications}
 
@@ -31,23 +40,119 @@ gamTest(df, dep, stat, layer = NA, analySpec, gamTable = TRUE,
 }
 \value{
 Returns a list with results
+\itemize{
+\item \strong{stat.gam.result --} Data frame with summary results in a tabular format suitable for output to a csv file
+\item \strong{chng.gam.result --} Data frame with estimate of change for sub-annual differences based on the 
+settings specified in \code{gamDiffModel}. Includes all data from stat.gam.result and sub-annual estimates of change
+in a tabular format suitable for output to a csv file. 
+\item \strong{data --} Data frame of data used in analysis (for example years with large proportion of censored data might be removed from the analysis and not included in this data frame)
+\item \strong{data.all --} Data frame of all potential data available for analysis
+\item \strong{iSpec --} List of baytrends analysis settings used for a specific analysis of station and parameter
+\item \strong{gamOutput0 --}	Results including model predictions for gam formula 0 (i.e., gam0)
+\item \strong{gamOutput1 --}	Results including model predictions for gam formula 1 (i.e., gam1)
+\item \strong{gamOutput2 --}	Results including model predictions for gam formula 2 (i.e., gam2)
+\item \strong{gamOutput3 --}	Results including model predictions for gam formula 3 (i.e., gam3)
+\item \strong{gamOutput4 --}	Results including model predictions for gam formula 4 (i.e., gam4)
+\item \strong{gamOutput5 --}	Results including model predictions for gam formula 5 (i.e., gam5)
+\item \strong{gamOutput6 --}	Results including model predictions for gam formula 6 (i.e., gam6)
+}
+
+\strong{gamOutput* --} For each evaluated model, \code{gamOutput*} (see above
+element list) is a list with the following elements:
+
+\itemize{
+\item \strong{gamOption --} gam formula ID, i.e., 0, 1, 2, 3, 4 , 5, 6 corresponding to gam0, gam1, gam2, etc.
+\item \strong{gamRslt --} mgcv::gam output
+\item \strong{gamRsltSum --} "summary" of mgcv::gam, i.e., summary(mgcv::gam)
+\item \strong{gamANOVAtbl --} GAM Analysis of Variance table 
+\item \strong{gamCoefftbl --} GAM Parameter Coefficients table
+\item \strong{gamDiagnostics --} GAM Diagnostics table(AIC, RMSE, and Adj. R-squared)
+\item \strong{perChange --} Estimates of Change table
+\item \strong{porDiff.regular --} Estimate of change in list format
+\item \strong{porDiff.adjusted --} Estimate of change adjusted for interventions in list format 
+\item \strong{predictions --} Data frame of gam predictions (all information used to create baytrends graphics excluding measurements)
+}
 }
 \description{
 Perform GAM analysis. Relies on mgcv::gam to perform general additive model.
-}
-\details{
+\code{\link[mgcv]{gam}}
 The baseDay function has been added to this package from the smwrBase package.
 }
-\examples{
-# specify parameter and station to analyze
-dep        <- 'secchi'
-stat       <- 'CB5.4'
-layer      <- 'S'
+\details{
+Set \code{gamPlot=FALSE} to turn off plotting. Computing the information
+("predictions") to create plots is one of the more time consumings aspects of
+the \code{gamTest} function. Setting \code{gamPlot=FALSE} turns off these
+computations and speeds up \code{gamTest}. The disadvantage is that no
+predictions are returned; however, the tabularized results stored in
+\code{stat.gam.result} and, if requested, \code{chng.gam.result} are still
+returned.
 
-#Using gamTest
+Setting \code{gamPlot} to a value between 1-30 changes the resolution of the
+resulting figure by setting the interval on which the prediction data set is
+made. By default \code{gamPlot} is set to 10. That is, a prediction is made
+every 10th day, or about 36 predictions per year. Values closer to 1 result
+in larger returned prediction data sets and take more computation time.
+Values closer to 30 result in smaller returned data sets and take less
+computation time. Although there is no change in the fitted model, values
+closer to 30 may have slight degraded figure quality if there is subtantial
+seasonality in the fitted model since the seasonal minimum and maximum might
+not be included in the prediction data set and therefore not plotted. Values
+greater than 30 are treated as 30. Setting \code{gamPlot=30} might be
+advantangeous when the analysis only requires cursory figure examination.
+
+Setting \code{gamTable=FALSE} will turn off table output to the console. This
+may be advantageous to reduce the amount of output. Since these computations
+do not significantly affect \code{gamTest} run time, the standard Analysis of
+Variance, GAM Parameter Coefficients, Diagnostics, and Estimates of Change
+tables are returned from \code{gamTest} regardless of the \code{gamTable}
+setting. Many of the values from these tables are also returned as part of 
+tabularized \code{stat.gam.result}.
+
+The default settings for \code{gamDiffModel} (i.e., \code{gamDiffModel=NA})
+will not result in sub-annual (i.e., seasonal) differences being computed. In
+this default setting, the returned \code{chng.gam.result} that is returned
+from \code{gamTest} will be empty. If \code{gamDiffModel} is a value (i.e.,
+not \code{NA}), then \code{chng.gam.result} will include one row for each
+combination of years specified in \code{analySpec$gamDiffPeriods}, seasons
+specified in \code{analySpec$gamDiffSeason}, and the number of models listed
+in \code{gamDiffModel}. For example \code{gamDiffModel=c(0,1,2)} would
+result in sub-annual being computed for gam0, gam1, and gam2.
+
+\strong{Flow and Salinity Adjustments (gam4).} It is necessary to create and
+pass properly formatted data via the \code{flow.detrended} and
+\code{salinity.detrended} arguments to evaluate gam4 models. See
+\code{\link{detrended.flow}} and \code{\link{detrended.salinity}} for more
+information on how to create properly formatted data.
+}
+\examples{
+\dontrun{
+# Specify parameter and station to analyze
+dep        <- 'do'
+stat       <- 'CB5.4'
+layer      <- 'B'
+
+# Prepare data and set up specifications for analysis
 dfr <- analysisOrganizeData (dataCensored)
 df        <- dfr[[1]]
 analySpec <- dfr[[2]]
-gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
 
+# Apply gamTest 
+gamResult <- gamTest(df, dep, stat, layer, analySpec=analySpec)
+gamPlotDisp(gamResult = gamResult, analySpec = analySpec,
+            fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+            diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+            seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+            seasAvgSigPlot = FALSE, fullModelPlot = TRUE, seasModelPlot = TRUE,
+            BaseCurrentMeanPlot = FALSE, adjustedPlot = FALSE)
+
+# Apply gamTestSeason
+gamResult2 <- gamTestSeason(df, dep, stat, layer, analySpec=analySpec,
+                            gamSeasonPlot = c("7/15-8/15", "purple", "range"))
+gamPlotDispSeason(gamResult = gamResult2, analySpec = analySpec,
+                  fullModel = 2, seasAvgModel = 2, seasonalModel = 2,
+                  diffType = "regular", obserPlot = TRUE, interventionPlot = TRUE,
+                  seasAvgPlot = TRUE, seasAvgConfIntPlot = FALSE,
+                  seasAvgSigPlot = FALSE, fullModelPlot = FALSE, seasModelPlot = FALSE,
+                  BaseCurrentMeanPlot = TRUE, adjustedPlot = FALSE, gamSeasonFocus = TRUE)
+}
 }

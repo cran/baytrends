@@ -36,14 +36,15 @@ The function returns a data frame with QW enabled columns.  The user must save t
 Any modification of column classes needs to be handled by the user (e.g., character to date or POSIXct).
 }
 \examples{
+\dontrun{
 # Use internal function to export dataCensored as example for import
-qw.export(dataCensored, getwd(), "dataCensored_TEST.csv")
+qw.export(dataCensored, getwd(), "data_censored_test.csv")
 
 
 # Import Test file as a qw object
 
 # Define function parameters
-fn.import <- file.path(".", "dataCensored_TEST.csv")
+fn.import <- file.path(".", "data_censored_test.csv")
 qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4", "tdp"
               , "no23", "nh4", "tdn", "tss")
 rounding <- c(3, 4)
@@ -55,7 +56,7 @@ dataCensored.test<- qw.import(fn.import, qw.names, rounding)
 str(dataCensored.test)
 
 # Save
-save(dataCensored.test, file="dataCensored.test.rda")
+save(dataCensored.test, file="data_censored_test.rda")
 
 
 # Show slot names for a qw object.
@@ -66,4 +67,5 @@ slotNames("qw")
 #dataCensored.test[,"date"] <- as.POSIXct(dataCensored.test[,"date"])
 # str(dataCensored.test)
 # as.numeric() and as.integer() can be used to convert columns of those types.
+}
 }

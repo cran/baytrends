@@ -4,7 +4,9 @@
 \name{month.USGS}
 \alias{month.USGS}
 \title{Month Abbreviations}
-\format{A named character vector of the 12 preferred forms for month abbreviations.}
+\format{
+A named character vector of the 12 preferred forms for month abbreviations.
+}
 \usage{
 month.USGS
 }
@@ -18,7 +20,7 @@ Added from smwrGraphs.
 print(month.USGS)
 \dontrun{
 # For examples of month.USGS in graphs see
-vignette(topic="LineScatter", package="smwrGraphs")
+#vignette(topic="LineScatter", package="smwrGraphs")
 }
 }
 \references{

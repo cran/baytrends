@@ -1,10 +1,10 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----Export, eval=FALSE--------------------------------------------------
+## ----Export, eval=FALSE-------------------------------------------------------
 #  library(baytrends)
 #  
 #  # load the included data frame, dataCensored, into the global environment
@@ -18,30 +18,30 @@ knitr::opts_chunk$set(
 #  
 #  # identify the name of the comma delimited (csv) file for the
 #  # outputted data set
-#  fn.output <- "dataCensored_TEST.csv"
+#  fn.output <- "data_censored_test.csv"
 #  
 #  # run function
 #  qw.export(myDF, dir.save, fn.output)
 
-## ----RawDataFormat_SHOW, eval=FALSE--------------------------------------
-#  df <- read.csv("dataCensored_TEST.csv")
+## ----RawDataFormat_SHOW, eval=FALSE-------------------------------------------
+#  df <- read.csv("data_censored_test.csv")
 #  head(df[,c(1:3,16:24)])
 
 ## ----RawDataFormat_RUN, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE----
 library(baytrends)
 library(knitr)
 # Use internal function to export dataCensored as example for import
-#qw.export(dataCensored, file.path(getwd(),"data"), "dataCensored_TEST.csv")
+#qw.export(dataCensored, file.path(getwd(),"data"), "data_censored_test.csv")
 
-df <- read.csv(file.path(getwd(),"data", "dataCensored_TEST.csv"))
+df <- read.csv(file.path(getwd(),"data", "data_censored_test.csv"))
 
 knitr::kable(head(df[,c(1:3,16:24)]))
 
-## ----Import, eval=FALSE--------------------------------------------------
+## ----Import, eval=FALSE-------------------------------------------------------
 #  library(baytrends)
 #  
 #  # Define function arguments
-#  fn.import <- "dataCensored_TEST.csv"
+#  fn.import <- "data_censored_test.csv"
 #  qw.names <- c("secchi" ,  "salinity", "do"  ,     "wtemp"  ,  "chla"
 #                ,"tn"     ,  "tp"    ,   "tss" ,     "din"  ,    "po4"
 #                ,"tdn"     , "tdp"  ,    "nh4"  ,    "no23")
@@ -60,9 +60,9 @@ knitr::kable(head(df[,c(1:3,16:24)]))
 #  str(dataCensored.test)
 #  
 #  # save the data frame for future use
-#  save(dataCensored.test, file="dataCensored.test.rda")
+#  save(dataCensored.test, file="data_censored_test.rda")
 
-## ----rbindData, eval=FALSE-----------------------------------------------
+## ----rbindData, eval=FALSE----------------------------------------------------
 #  library(baytrends)
 #  
 #  newDF <- rbindQW(dataCensored[1:20,], dataCensored[101:120,])

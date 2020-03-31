@@ -4,10 +4,20 @@
 \alias{createResiduals}
 \title{Calculate GAM residuals}
 \usage{
-createResiduals(df, dep, residualModel = "doy_flw_sal",
-  analySpec = analySpec, gamTable = FALSE, gamPlot = FALSE,
-  flow.detrended = NA, salinity.detrended = NA, width = 10,
-  height = 3.5, folder_r = "pltResiduals", ProjRoot)
+createResiduals(
+  df,
+  dep,
+  residualModel = "doy_flw_sal",
+  analySpec = analySpec,
+  gamTable = FALSE,
+  gamPlot = FALSE,
+  flow.detrended = NA,
+  salinity.detrended = NA,
+  width = 10,
+  height = 3.5,
+  folder_r = "pltResiduals",
+  ProjRoot
+)
 }
 \arguments{
 \item{df}{data frame}
@@ -35,7 +45,7 @@ createResiduals(df, dep, residualModel = "doy_flw_sal",
 \item{ProjRoot}{Root folder for project.}
 }
 \value{
-Returns a vector with results
+Returns df with appended column of data
 }
 \description{
 Use GAM analysis to compute residuals. Relies on mgcv::gam to perform general additive model.
