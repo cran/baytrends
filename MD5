@@ -1,8 +1,8 @@
-195d45c5d6fa8cdb17f1b95588991216 *DESCRIPTION
+7248dfa81a8726eb3efdb1beba2e3832 *DESCRIPTION
 b92dd0ab731095bc0fe88b92afe32f04 *NAMESPACE
-2818ae70e630e8b3b9137f1f85c4d5a8 *NEWS
-2818ae70e630e8b3b9137f1f85c4d5a8 *NEWS.md
-86e6432689ff8812f102d13bd87b1574 *R/analysisOrganizeData.R
+ad0bb89d14cc7ef37ac337d0d8bb81bf *NEWS
+ad0bb89d14cc7ef37ac337d0d8bb81bf *NEWS.md
+0a8d044a3bcd086ff1748d5966b98db8 *R/analysisOrganizeData.R
 a08bd6ea88d08d5c911c4d5f7c770d96 *R/appendDateFeatures.R
 421b2b3b71dfc6de3e17ffbec88ed337 *R/baytrends.R
 8c2f3e03fef0b2807937a1ea8a22502b *R/checkRange.R
@@ -28,7 +28,7 @@ ef44340facb6e4a9083de4ce64cdead8 *R/getUSGSflow.R
 08c17aeb7c8a562f7f8985f9db6af5fa *R/headers2.R
 fa053550d9bf9b803bff0b5a2dac3406 *R/imputeCensored.R
 711d59f0fc2657cd054d8f7f0cc743b6 *R/initializeResults.r
-b6ecb37114921bfa51a13ecd87c91d2e *R/layerAggregation.R
+5684bbadfc89743a96d23cc7785fc8d7 *R/layerAggregation.R
 f9e9378574cca469b03d93ae48ebcb77 *R/loadData.R
 4154beaa3e0d7d422d47f206d88086f4 *R/loadExcel.R
 9d7185d639b2265159f72736b82b0c7b *R/loadModels.R
@@ -39,7 +39,7 @@ e46240e41672bc950238be05e62abd6c *R/mergeFlow.R
 3063792539086f0140836751b5f9d733 *R/reAttDF.R
 a95bc44557ef2f3e06b62717ffafdcf9 *R/saveDF.R
 6537caa3f10e30291a10f89291dd80a1 *R/seasAdjflow2.R
-385c781769b9824e3763b29d8ec4147a *R/selectData.R
+9e7da5149be9fdeec7bdb6f1dd1c8eb9 *R/selectData.R
 83d632161267b898f909766ebcb9b0d4 *R/smwrBase_baseDay.R
 92fbd9f6012eefa4d6c819e78f93928f *R/smwrBase_baseDay2decimal.R
 30f1756febdff54fff94df1ff69ffa7f *R/smwrBase_dectime.R
@@ -51,7 +51,7 @@ fe96e5ea200ae89a1d521df6b8559bec *R/smwrBase_na2miss.R
 e384616da9449878cf48af68cac963bd *R/sysdata.rda
 7da646b3ac5ea817f2e67f82b19cfc93 *R/unSurv.R
 5dbb33f7273d06ffd7f0840b07a388d0 *R/zzz.R
-2b4284f5cfd839417b1d1f9664cc4b94 *README.md
+342a8ea40bec69ed0a36a76a51e8e1f2 *README.md
 43c8d8c41498b0e80ead2d9ed3ab4618 *build/vignette.rds
 a5c205a0da0bc8fc8dde543ca90ff956 *data/dataCensored.rda
 fe3b9aa3323a2226e4716af0bbf9f927 *data/layerLukup.rda
@@ -61,10 +61,10 @@ fd6c49aa14e8115e7d3297c9491b731a *data/stationMasterList.rda
 63a1439bea1ba3221ea890cb6f4be808 *data/usgsGages.rda
 4563df94d404bb801175878ddec435b5 *inst/doc/Detrending_Flow_and_Salinity_Data.R
 4d30b58a78a06efc38656d9dbcdca18b *inst/doc/Detrending_Flow_and_Salinity_Data.Rmd
-e91aed35feb8c01c06b96c936ab7b62e *inst/doc/Detrending_Flow_and_Salinity_Data.html
+1cf09ea9a9a9687ad3d2c3b1bd86fd24 *inst/doc/Detrending_Flow_and_Salinity_Data.html
 96fa113d1a8f1fd7ea3121b18bb21650 *inst/doc/Processing_Censored_Data.R
 9020f3668cf1de885d354e8f10926b39 *inst/doc/Processing_Censored_Data.Rmd
-f06ee7aada7ed2cb0f708356e806431d *inst/doc/Processing_Censored_Data.html
+28b472f73a21a44c352969bb9afc7303 *inst/doc/Processing_Censored_Data.html
 f9f64e0c6370b341ef81b3e5b4b8a6d4 *inst/doc/baytrends_overview.pdf
 a275e3f7dcc22291187dd9fa065abc5d *inst/doc/statgam_and_chnggam_output_fields.pdf
 895b5fa5a636829761e9443a5c89ccc5 *inst/extdata/baytrends.xlsx
