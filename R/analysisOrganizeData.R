@@ -197,6 +197,10 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
 
 # df<-dataCensored; analySpec<-list(); parameterList<-stationMasterList<-layerLukup<-reports<-NA
 # ----- Change history --------------------------------------------
+# 01May2022: JBH: update is.na(...) to is.null(nrow(...))
+# 01May2022: JBH: corrected periodName data per RM 2/22/2022 email
+# 22Feb2022: JBH: reverted time periods to 2yr span
+# 12May2021: JBH: update time periods to 3yr span
 # 12May2021: JBH: update time periods to 3yr span
 # 24Mar2021: JBH: add a default of gamDiffNumChgYrs as 3 years
 # 03Jun2019: JBH: add report of which models are loaded; mod's to reduce required data elements
@@ -241,10 +245,10 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # Store number of rows of data
   beginRecords <- nrow(df)
   
-  # Use built-in data frames if not supplied by user 
-  suppressWarnings(if (is.na(parameterList))     parameterList     <- baytrends::parameterList)
-  suppressWarnings(if (is.na(stationMasterList)) stationMasterList <- baytrends::stationMasterList)
-  suppressWarnings(if (is.na(layerLukup))        layerLukup        <- baytrends::layerLukup)
+  # Use built-in data frames if not supplied by user #01May2022
+  if (is.null(nrow(parameterList)))     parameterList     <- baytrends::parameterList
+  if (is.null(nrow(stationMasterList))) stationMasterList <- baytrends::stationMasterList
+  if (is.null(nrow(layerLukup)))        layerLukup        <- baytrends::layerLukup
 
   # checkFieldNames function ####
   checkFieldNames <- function(df
@@ -363,8 +367,8 @@ analysisOrganizeData <- function(df, analySpec=list(), reports=c(0,1,2,3,4)
   # load periods of record to evaluate 
   if (!"gamDiffPeriods"  %in% names(analySpec)) analySpec$gamDiffPeriods   <- list(
     list( periodName = "Full Record",     periodStart = c(NA),        periodEnd = c(NA)),
-    list( periodName = "1999/01-Present", periodStart = c(1999:2001), periodEnd = c(NA)),
-    list( periodName = "2011/13-Present", periodStart = c(2011:2013), periodEnd = c(NA)))
+    list( periodName = "1999/00-Present", periodStart = c(1999:2000), periodEnd = c(NA)),
+    list( periodName = "2012/13-Present", periodStart = c(2012:2013), periodEnd = c(NA)))
 
   if (!"gamDiffSeasons"  %in% names(analySpec)) analySpec$gamDiffSeasons   <- list(
     list ( seasonName = "All",     seasonMonths = c(1:12)),
