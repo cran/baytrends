@@ -13,12 +13,12 @@ Description: Enable users to evaluate long-term trends using a Generalized
     questions.  Methodology described in Murphy (2019) 
     <doi:10.1016/j.envsoft.2019.03.027>.
 Author: Rebecca Murphy, Elgin Perry, Jennifer Keisman, Jon Harcum, Erik W Leppo
-Version: 2.0.8
+Version: 2.0.9
 Maintainer: Erik W Leppo <Erik.Leppo@tetratech.com>
 Depends: R (>= 3.5.0)
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 Imports: dataRetrieval, digest, dplyr, fitdistrplus, grDevices,
         lubridate, knitr, memoise, mgcv, pander, plyr, readxl,
@@ -42,6 +42,6 @@ Collate: analysisOrganizeData.R appendDateFeatures.R baytrends.R
         smwrBase_na2miss.R supportFunctions.R unSurv.R gdata_nobs.R
         zzz.R
 NeedsCompilation: no
-Packaged: 2022-05-05 19:17:57 UTC; Erik.Leppo
+Packaged: 2023-05-25 14:23:52 UTC; Erik.Leppo
 Repository: CRAN
-Date/Publication: 2022-05-05 20:00:02 UTC
+Date/Publication: 2023-05-25 15:20:05 UTC

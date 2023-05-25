@@ -1,7 +1,7 @@
-3e025e6b8795669705c229adcafff008 *DESCRIPTION
+3526b7a2b4420c649c53e97d3ade0105 *DESCRIPTION
 20d66a84b8026fbfabe501ed59a46859 *NAMESPACE
-af9d7031f6bcb863d4c6264955cabed5 *NEWS
-af9d7031f6bcb863d4c6264955cabed5 *NEWS.md
+45872639eea1df75fca59a16946225ed *NEWS
+45872639eea1df75fca59a16946225ed *NEWS.md
 12ff06b13203de320d4404c018ab3599 *R/analysisOrganizeData.R
 a08bd6ea88d08d5c911c4d5f7c770d96 *R/appendDateFeatures.R
 99f4420d65a8b6a094d41062f2f7a296 *R/baytrends.R
@@ -21,7 +21,7 @@ f2254dae111eb25577b6e0fcc02bcab6 *R/findFile.R
 607c8e0d25ebfacba186daa4349b879a *R/gamPlotDisp.R
 54cfbc7142d17430deadad3deab35329 *R/gamPlotDispSeason.R
 5303e36d59b604a5693038f1a2f75f34 *R/gamTables.R
-f0d17a2bd109cd03992c725d168866ed *R/gamTest.r
+6e250f62f1709fed3645abad80968698 *R/gamTest.r
 fd179782b4edeb3bfe07cd81b169215e *R/gamTestSeason.r
 f3d3e5c3a0a33e5ebba288c160f1e74e *R/gdata_nobs.R
 f9e95b12dd5a9e6754183593a05465d3 *R/getUSGSflow.R
@@ -51,8 +51,8 @@ dd3fd43a982f8a0ccbf5042a4f5d6ff8 *R/smwrBase_fillMissing.R
 e384616da9449878cf48af68cac963bd *R/sysdata.rda
 6009f6ce89790bd48a86d043ff71f83c *R/unSurv.R
 064e038a53f37e324b4c732551929bd7 *R/zzz.R
-54ea172196061e56ba7748997521dde7 *README.md
-e8a503e50cef01ca870a1f9f1a633b71 *build/vignette.rds
+72df216d7116041333ec61cf40931aee *README.md
+74b159ea330527fefeb4cf24624a6d4d *build/vignette.rds
 a5c205a0da0bc8fc8dde543ca90ff956 *data/dataCensored.rda
 fe3b9aa3323a2226e4716af0bbf9f927 *data/layerLukup.rda
 2efc5338969ef81ee47d7bcf4871820b *data/parameterList.rda
@@ -61,10 +61,10 @@ fd6c49aa14e8115e7d3297c9491b731a *data/stationMasterList.rda
 63a1439bea1ba3221ea890cb6f4be808 *data/usgsGages.rda
 4563df94d404bb801175878ddec435b5 *inst/doc/Detrending_Flow_and_Salinity_Data.R
 4d30b58a78a06efc38656d9dbcdca18b *inst/doc/Detrending_Flow_and_Salinity_Data.Rmd
-59391b122d71b04a73f72d2bb73337f0 *inst/doc/Detrending_Flow_and_Salinity_Data.html
+d63c648b88a15b1ebef613f22caf89b4 *inst/doc/Detrending_Flow_and_Salinity_Data.html
 96fa113d1a8f1fd7ea3121b18bb21650 *inst/doc/Processing_Censored_Data.R
 9020f3668cf1de885d354e8f10926b39 *inst/doc/Processing_Censored_Data.Rmd
-3793d821b0cbad12ccfeb0d6892125f4 *inst/doc/Processing_Censored_Data.html
+2f0912de67de2f7ab7f883060ab1178d *inst/doc/Processing_Censored_Data.html
 6a75601a883cac0e6184c7151ae407d3 *inst/doc/baytrends_overview.pdf
 a275e3f7dcc22291187dd9fa065abc5d *inst/doc/statgam_and_chnggam_output_fields.pdf
 895b5fa5a636829761e9443a5c89ccc5 *inst/extdata/baytrends.xlsx
@@ -115,7 +115,6 @@ fe13b32f3a2ee19c92cc20467144f9d5 *man/dot-initializeResults.Rd
 2739bf2b7b756a5d4d3b1f6d9b608854 *man/dot-reAttDF.Rd
 d99469d45856674030d4622ffc3863d2 *man/dot-vTable.Rd
 622c97452961d64566da56bcccd93309 *man/eventProcessing.Rd
-0fac2357d9f5b03d5bc2fce94cffaa11 *man/figures/logo.png
 510bae9c96aa96e75fc877d013676263 *man/fillMissing.Rd
 8a29b16132fbf903175bf9969d19a6c7 *man/filterWgts.Rd
 3419c35b32820c26b44b1484e8bb9e46 *man/flwAveragePred.Rd
