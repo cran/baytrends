@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jon.Harcum@tetratech.com and Erik.Leppo@tetratech.com" />
 
-<meta name="date" content="2023-05-25" />
+<meta name="date" content="2024-02-12" />
 
 <title>Flow and Salinity Data Sets</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Flow and Salinity Data Sets</h1>
 <h4 class="author"><a href="mailto:Jon.Harcum@tetratech.com" class="email">Jon.Harcum@tetratech.com</a> and <a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
-<h4 class="date">2023-05-25</h4>
+<h4 class="date">2024-02-12</h4>
 
 
 
@@ -365,13 +365,13 @@ steps involved with each function.</p>
 <h2>Load baytrends</h2>
 <p>The first step is to load the baytrends library. Loading baytrends
 will result in loading multiple additional libraries as well.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baytrends)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading:baytrends v2.0.9</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;baytrends&#39;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     nobs</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(baytrends)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; Loading:baytrends v2.0.11</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;baytrends&#39;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt;     nobs</span></span></code></pre></div>
 </div>
 <div id="seasonally-detrended-flow" class="section level2">
 <h2>Seasonally Detrended Flow</h2>
@@ -449,24 +449,24 @@ the USGS to review and approve their flow records.</p>
 <p>Information about the settings for dvAvgWinSel, dvAvgWgtSel,
 dvAvgSidesSel, lowess.f, span, and max.fill are described in the help
 file for this function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baytrends)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Function Inputs</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>usgsGageID    <span class="ot">&lt;-</span> usgsGages<span class="sc">$</span>usgsGageID <span class="co"># all RIM stations</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>siteName      <span class="ot">&lt;-</span> usgsGages<span class="sc">$</span>siteName   <span class="co"># all RIM stations</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>yearStart     <span class="ot">&lt;-</span> <span class="dv">1983</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>yearEnd       <span class="ot">&lt;-</span> <span class="dv">2017</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>dvAvgWinSel   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>dvAvgWgtSel   <span class="ot">&lt;-</span> <span class="st">&quot;uniform&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>dvAvgSidesSel <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>lowess.f      <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Run detrended.flow function</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>flow.detrended <span class="ot">&lt;-</span> <span class="fu">detrended.flow</span>(usgsGageID, siteName, yearStart, yearEnd</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                                 , lowess.f)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Save list to data file separate use</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(flow.detrended, <span class="at">file=</span><span class="st">&#39;mySeasonallyDetrendedFlow.rda&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(baytrends)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co"># Define Function Inputs</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>usgsGageID    <span class="ot">&lt;-</span> usgsGages<span class="sc">$</span>usgsGageID <span class="co"># all RIM stations</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>siteName      <span class="ot">&lt;-</span> usgsGages<span class="sc">$</span>siteName   <span class="co"># all RIM stations</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>yearStart     <span class="ot">&lt;-</span> <span class="dv">1983</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>yearEnd       <span class="ot">&lt;-</span> <span class="dv">2017</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>dvAvgWinSel   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">90</span>, <span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">210</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>dvAvgWgtSel   <span class="ot">&lt;-</span> <span class="st">&quot;uniform&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>dvAvgSidesSel <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>lowess.f      <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># Run detrended.flow function</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>flow.detrended <span class="ot">&lt;-</span> <span class="fu">detrended.flow</span>(usgsGageID, siteName, yearStart, yearEnd</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>                                 , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>                                 , lowess.f)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co"># Save list to data file separate use</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="fu">save</span>(flow.detrended, <span class="at">file=</span><span class="st">&#39;mySeasonallyDetrendedFlow.rda&#39;</span>)</span></code></pre></div>
 <div id="example" class="section level3">
 <h3>Example</h3>
 <p>The following five figures Figures 1-5 provide an example analysis
@@ -598,20 +598,20 @@ to create an average salinity value for the bottom and below pycnocline
 are described in the help file. The detrened.salinity function will
 assume the user wants to evaluate the salinity for all of the stations
 in sal and for all the years of available data.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Function Inputs</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.sal      <span class="ot">&lt;-</span> sal</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dvAvgWinSel <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>lowess.f    <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>minObs      <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>minObs.sd   <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                 </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Run Function</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>salinity.detrended <span class="ot">&lt;-</span> <span class="fu">detrended.salinity</span>(df.sal, dvAvgWinSel, </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                 lowess.f, minObs, minObs.sd)   </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Save list to data file separate use</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(salinity.detrended, <span class="at">file=</span><span class="st">&#39;mySeasonallyDetrendedSalinity.rda&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># Define Function Inputs</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>df.sal      <span class="ot">&lt;-</span> sal</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>dvAvgWinSel <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>lowess.f    <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>minObs      <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>minObs.sd   <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                 </span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># Run Function</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>salinity.detrended <span class="ot">&lt;-</span> <span class="fu">detrended.salinity</span>(df.sal, dvAvgWinSel, </span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>                                 lowess.f, minObs, minObs.sd)   </span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># Save list to data file separate use</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="fu">save</span>(salinity.detrended, <span class="at">file=</span><span class="st">&#39;mySeasonallyDetrendedSalinity.rda&#39;</span>)</span></code></pre></div>
 <div id="example-1" class="section level3">
 <h3>Example</h3>
 <p>The below figures display summary statistics (mean, standard
@@ -635,21 +635,21 @@ observations as a Function of Day of Year.</em></p>
 <p>It is now possible to run gam4 using the results of the above
 analyses. The below code chunk will run the gam4 for surface total
 nitrogen at station CB5.4.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dfr       <span class="ot">&lt;-</span> <span class="fu">analysisOrganizeData</span>(dataCensored, <span class="at">reports =</span> <span class="cn">NA</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df        <span class="ot">&lt;-</span> dfr[[<span class="st">&quot;df&quot;</span>]]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>analySpec <span class="ot">&lt;-</span> dfr[[<span class="st">&quot;analySpec&quot;</span>]]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># down select analyzed GAM</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>analySpec<span class="sc">$</span>gamModels <span class="ot">&lt;-</span> analySpec<span class="sc">$</span>gamModels[<span class="dv">5</span>]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>stat <span class="ot">=</span> <span class="st">&#39;CB5.4&#39;</span>; dep <span class="ot">=</span> <span class="st">&#39;tn&#39;</span>; layer <span class="ot">=</span> <span class="st">&#39;S&#39;</span>;</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>gamResult <span class="ot">&lt;-</span> <span class="fu">gamTest</span>(<span class="at">df =</span> df, <span class="at">dep =</span> dep, <span class="at">stat =</span> stat, <span class="at">layer =</span> layer</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                     , <span class="at">analySpec =</span> analySpec</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                     , <span class="at">salinity.detrended =</span> salinity.detrended)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Detrended flow data (flow.detrended) not passed as argument in</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; gamTest, but models included in analySpec include those with &#39;flw_sal&#39; term.</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Consider passing detrended flow data or reducing models specified in analySpec.</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>dfr       <span class="ot">&lt;-</span> <span class="fu">analysisOrganizeData</span>(dataCensored, <span class="at">reports =</span> <span class="cn">NA</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>df        <span class="ot">&lt;-</span> dfr[[<span class="st">&quot;df&quot;</span>]]</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>analySpec <span class="ot">&lt;-</span> dfr[[<span class="st">&quot;analySpec&quot;</span>]]</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># down select analyzed GAM</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>analySpec<span class="sc">$</span>gamModels <span class="ot">&lt;-</span> analySpec<span class="sc">$</span>gamModels[<span class="dv">5</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>stat <span class="ot">=</span> <span class="st">&#39;CB5.4&#39;</span>; dep <span class="ot">=</span> <span class="st">&#39;tn&#39;</span>; layer <span class="ot">=</span> <span class="st">&#39;S&#39;</span>;</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>gamResult <span class="ot">&lt;-</span> <span class="fu">gamTest</span>(<span class="at">df =</span> df, <span class="at">dep =</span> dep, <span class="at">stat =</span> stat, <span class="at">layer =</span> layer</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>                     , <span class="at">analySpec =</span> analySpec</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>                     , <span class="at">salinity.detrended =</span> salinity.detrended)</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; Warning: Detrended flow data (flow.detrended) not passed as argument in</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; gamTest, but models included in analySpec include those with &#39;flw_sal&#39; term.</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; Consider passing detrended flow data or reducing models specified in analySpec.</span></span></code></pre></div>
 <div id="total-nitrogen---non-linear-trend-with-seasint.-hydro-adj" class="section level4">
 <h4>Total Nitrogen - Non-linear trend with Seas+Int. &amp; Hydro
 Adj</h4>

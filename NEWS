@@ -4,12 +4,43 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-05-25 08:07:34.383787
+    #> Last Update: 2024-02-12 12:03:12.250764
+
+# baytrends 2.0.11
+
+- Release 2024-02-12
+- refactor: Bump version for CRAN submittal
+
+# baytrends 2.0.10.9001
+
+- Release 2024-02-12
+- fix: Bad URL in NEWS (1.0.4.9011) Remove, no longer valid
+
+# baytrends 2.0.10
+
+- Release 2024-02-09
+- refactor: Bump version for CRAN submittal
+
+# baytrends 2.0.9.9003
+
+- Release 2024-02-07
+- refactor: Update GitHub Actions to v2;
+  usethis::use_github_actions(“foo”)
+
+# baytrends 2.0.9.9002
+
+- Release 2024-02-07
+- docs: Update package documentation, Issue \#80
+- refactor: Update analysisOrganizeData for time periods, 12/13 to 14/15
+
+# baytrends 2.0.9.9001
+
+- Release 2024-02-07
+- docs: Add URL to DESCRIPTION per Pull Request, PR \#81
 
 # baytrends 2.0.9
 
 - Release 2023-04-04
-
 - gamTest.R: updated \|\| to \| to remove coercion to ‘logical(1)’
   warning
 
@@ -420,7 +451,7 @@ NEWS
 - Release 2020-03-31
 - Additional changes for CRAN.
   - Bad URL, comment out.
-    - smwrQW_x\_dlimit.R
+    - smwrQW_x_dlimit.R
   - Example run time \> 10 seconds, add ‘dontrun’.
     - gamPlotDispSeason
     - gamTestSeason
@@ -512,7 +543,7 @@ NEWS
   - QWstacked
 - Comment out examples.
   - smwrBase_importRDB.R
-  - swmrQW_x\_readNWQLdl.R
+  - swmrQW_x_readNWQLdl.R
 - DESCRIPTION
   - R \>= 3.5.0 based on Check warning.
 
@@ -706,8 +737,8 @@ NEWS
 - DESCRIPTION
   - Change ‘maintainer’ from Jon Harcum to Erik Leppo so Erik can submit
     to CRAN.
-  - Change ‘additional repositories’ to GitHub. Was
-    <https://owi.usgs.gov/R>.
+  - Change ‘additional repositories’ to GitHub. Was owi USGS gov slash
+    R.
 - .Rbuildignore
   - Add cran-comments.md
 - qw.import; example qw.names

@@ -1,10 +1,10 @@
-3526b7a2b4420c649c53e97d3ade0105 *DESCRIPTION
+0fa1100b973fde689d4173f9ab1efe0f *DESCRIPTION
 20d66a84b8026fbfabe501ed59a46859 *NAMESPACE
-45872639eea1df75fca59a16946225ed *NEWS
-45872639eea1df75fca59a16946225ed *NEWS.md
-12ff06b13203de320d4404c018ab3599 *R/analysisOrganizeData.R
+522ac6c744889c0d9b95067d25978247 *NEWS
+522ac6c744889c0d9b95067d25978247 *NEWS.md
+19d496d8488e5ca37400d1e6bccc0528 *R/analysisOrganizeData.R
 a08bd6ea88d08d5c911c4d5f7c770d96 *R/appendDateFeatures.R
-99f4420d65a8b6a094d41062f2f7a296 *R/baytrends.R
+d7848d920cab68837092b63023b36978 *R/baytrends.R
 f8a4aa08367893fc2899670f0108647e *R/checkRange.R
 20bc9eab537e35755e94e279c53ad76d *R/chkParameter.R
 73183085b146ab106c6c3c6285c3ec46 *R/closeOut.R
@@ -52,7 +52,7 @@ e384616da9449878cf48af68cac963bd *R/sysdata.rda
 6009f6ce89790bd48a86d043ff71f83c *R/unSurv.R
 064e038a53f37e324b4c732551929bd7 *R/zzz.R
 72df216d7116041333ec61cf40931aee *README.md
-74b159ea330527fefeb4cf24624a6d4d *build/vignette.rds
+3cf221157b2c17cc826148270f2021de *build/vignette.rds
 a5c205a0da0bc8fc8dde543ca90ff956 *data/dataCensored.rda
 fe3b9aa3323a2226e4716af0bbf9f927 *data/layerLukup.rda
 2efc5338969ef81ee47d7bcf4871820b *data/parameterList.rda
@@ -61,10 +61,10 @@ fd6c49aa14e8115e7d3297c9491b731a *data/stationMasterList.rda
 63a1439bea1ba3221ea890cb6f4be808 *data/usgsGages.rda
 4563df94d404bb801175878ddec435b5 *inst/doc/Detrending_Flow_and_Salinity_Data.R
 4d30b58a78a06efc38656d9dbcdca18b *inst/doc/Detrending_Flow_and_Salinity_Data.Rmd
-d63c648b88a15b1ebef613f22caf89b4 *inst/doc/Detrending_Flow_and_Salinity_Data.html
+c0baa8a536ddce5ea32d22d6f581c15d *inst/doc/Detrending_Flow_and_Salinity_Data.html
 96fa113d1a8f1fd7ea3121b18bb21650 *inst/doc/Processing_Censored_Data.R
 9020f3668cf1de885d354e8f10926b39 *inst/doc/Processing_Censored_Data.Rmd
-2f0912de67de2f7ab7f883060ab1178d *inst/doc/Processing_Censored_Data.html
+16dfad9ac877fa5f29479c14f0739a6e *inst/doc/Processing_Censored_Data.html
 6a75601a883cac0e6184c7151ae407d3 *inst/doc/baytrends_overview.pdf
 a275e3f7dcc22291187dd9fa065abc5d *inst/doc/statgam_and_chnggam_output_fields.pdf
 895b5fa5a636829761e9443a5c89ccc5 *inst/extdata/baytrends.xlsx
@@ -74,7 +74,7 @@ f31780d5818c014edfb742bb8e923186 *man/analysisOrganizeData.Rd
 5df40aeb68aae7d966631dbdee6b8ea4 *man/appendDateFeatures.Rd
 afe6c2fcbe97bd44eb65ff7d39715da9 *man/baseDay.Rd
 f4ef87ed1e7232f958b06a2280eb131d *man/baseDay2decimal.Rd
-1d6d8e56ab02e71c027137e456381579 *man/baytrends.Rd
+53cc5d0d0de44e8cedd00b3b7ea09db5 *man/baytrends-package.Rd
 348bd921ac82dd0aab6caa217286a3c5 *man/closeOut.Rd
 5384ecb97bf27ed4ddaa267b5bf310c9 *man/createResiduals.Rd
 2af2fa152ce4ce815bf91112246643f0 *man/dataCensored.Rd
