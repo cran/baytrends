@@ -4,7 +4,32 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-02-12 12:03:12.250764
+    #> Last Update: 2024-07-26 09:35:21.683005
+
+# baytrends 2.0.12
+
+- release 2024-07-27
+- refactor: Bump version number for submittal to CRAN
+
+# baytrends 2.0.11.9004
+
+- release 2024-07-27
+- refactor: Update CRAN comments
+
+# baytrends 2.0.11.9003
+
+- release 2024-07-26
+- docs: Add rhubv2 for testing before posting to CRAN
+
+# baytrends 2.0.11.9002
+
+- refactor: Function impute to pass a dataframe with two columns named
+  left and right to fitdistrplus::fitdistcens
+
+# baytrends 2.0.11.9001
+
+- refactor: Function gamTestSeason to address logic error with
+  gamPenaltyCrit
 
 # baytrends 2.0.11
 
