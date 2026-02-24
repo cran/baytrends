@@ -12,29 +12,29 @@ library(baytrends)
 knitr::kable(usgsGages)
 
 ## ----flow, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5----------
-#  library(baytrends)
-#  # Define Function Inputs
-#  usgsGageID    <- usgsGages$usgsGageID # all RIM stations
-#  siteName      <- usgsGages$siteName   # all RIM stations
-#  yearStart     <- 1983
-#  yearEnd       <- 2017
-#  dvAvgWinSel   <- c(1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210)
-#  dvAvgWgtSel   <- "uniform"
-#  dvAvgSidesSel <- 1
-#  lowess.f      <- 0.2
-#  
-#  # Run detrended.flow function
-#  flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
-#                                   , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
-#                                   , lowess.f)
-#  
-#  # Save list to data file separate use
-#  save(flow.detrended, file='mySeasonallyDetrendedFlow.rda')
+# library(baytrends)
+# # Define Function Inputs
+# usgsGageID    <- usgsGages$usgsGageID # all RIM stations
+# siteName      <- usgsGages$siteName   # all RIM stations
+# yearStart     <- 1983
+# yearEnd       <- 2017
+# dvAvgWinSel   <- c(1, 5, 10, 15, 20, 30, 40, 50, 60, 90, 120, 150, 180, 210)
+# dvAvgWgtSel   <- "uniform"
+# dvAvgSidesSel <- 1
+# lowess.f      <- 0.2
+# 
+# # Run detrended.flow function
+# flow.detrended <- detrended.flow(usgsGageID, siteName, yearStart, yearEnd
+#                                  , dvAvgWinSel, dvAvgWgtSel, dvAvgSidesSel
+#                                  , lowess.f)
+# 
+# # Save list to data file separate use
+# save(flow.detrended, file='mySeasonallyDetrendedFlow.rda')
 
 ## ----flow1, eval=TRUE, echo=FALSE, results='asis', fig.height=4.5, fig.width=6.5----
 
 # Define Function Inputs
-usgsGageID    <- c("01578310")
+usgsGageID    <- c("USGS-01578310")
 siteName      <- c("Susquehanna River at Conowingo, MD")
 yearStart     <- 2003 #1983
 yearEnd       <- 2017
@@ -58,20 +58,20 @@ knitr::kable(head(sal[sal$layer %in% c('S', 'B') , ]),row.names = FALSE)
 str(sal)
 
 ## ----salinity2, eval=FALSE, results='asis', fig.height=6.5, fig.width=6.5-----
-#  
-#  # Define Function Inputs
-#  df.sal      <- sal
-#  dvAvgWinSel <- 30
-#  lowess.f    <- 0.2
-#  minObs      <- 40
-#  minObs.sd   <- 10
-#  
-#  # Run Function
-#  salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel,
-#                                   lowess.f, minObs, minObs.sd)
-#  
-#  # Save list to data file separate use
-#  save(salinity.detrended, file='mySeasonallyDetrendedSalinity.rda')
+# 
+# # Define Function Inputs
+# df.sal      <- sal
+# dvAvgWinSel <- 30
+# lowess.f    <- 0.2
+# minObs      <- 40
+# minObs.sd   <- 10
+# 
+# # Run Function
+# salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel,
+#                                  lowess.f, minObs, minObs.sd)
+# 
+# # Save list to data file separate use
+# save(salinity.detrended, file='mySeasonallyDetrendedSalinity.rda')
 
 ## ----salinity3, eval=TRUE, echo=FALSE, results='asis', fig.height=4.5, fig.width=6.5----
 # Define Function Inputs

@@ -34,8 +34,19 @@ therewith. This software is provided 'AS IS.
 Useful links:
 \itemize{
   \item \url{https://github.com/tetratech/baytrends}
-  \item \url{https://tetratech.github.io/baytrends/}
   \item Report bugs at \url{https://github.com/tetratech/baytrends/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Erik W Leppo \email{Erik.Leppo@tetratech.com} (\href{https://orcid.org/0000-0001-8026-7474}{ORCID})
+
+Authors:
+\itemize{
+  \item Rebecca Murphy (\href{https://orcid.org/0000-0003-3391-1823}{ORCID})
+  \item Elgin Perry
+  \item Jennifer Keisman (\href{https://orcid.org/0000-0001-6808-9193}{ORCID})
+  \item Jon Harcum (\href{https://orcid.org/0000-0001-5910-5243}{ORCID})
 }
 
 }
